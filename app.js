@@ -9,19 +9,20 @@ import { v2 as cloudinary } from "cloudinary";
 import { singleAvatar } from './middleware/multer.js';
 import { corsOptions } from './constants/config.js';
 
+dotenv.config({
+  path: "./.env",
+});
 const port = process.env.port || 3000
-// const envMode = process.env.NODE_ENV.trim() || "PRODUCTION";
+const mongoURI = process.env.MONGO_URI;
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
-dotenv.config({
-  path: "./.env",
-});
 
-mongoose.connect("mongodb://localhost:27017", {
+
+mongoose.connect(mongoURI, {
   dbName: "JobRegistration",
 })
   .then(() => console.log('Database Connected'))
