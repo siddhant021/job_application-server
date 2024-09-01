@@ -15,10 +15,10 @@ dotenv.config({
 const port = process.env.port || 3000
 const mongoURI = process.env.MONGO_URI;
 const app = express();
-
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+
 
 
 
